@@ -23,7 +23,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="hidden resultado sm:flex">
+                <div class="resultado sm:flex-col">
                     <table class="table" id="tableResults">
                         <thead>
                             <tr>
@@ -63,6 +63,38 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div class="flex justify-center items-center" >
+                        <h1 class="m-0" >Detalhes do cálculo </h1>
+                        <div class="w-[40px]">
+                            <img class="calc w-4/5 mx-3" src="{{ Vite::asset('Resources/images/check.png') }}" alt="">
+                            <img class="dontshow w-4/5 mx-3 hide" src="{{ Vite::asset('Resources/images/crossed.png') }}" alt="">
+                        </div>
+                    </div>
+                    <div class="detalhes hide flex-col ">
+                        <div class="sum">
+                            <h5 class="font-bold">Tabela de alíquotas do INSS</h5>
+                            <h5 class="italic">Para calcular o valor devido ao INSS, basta multiplicar o salário pela alíquota base.  </h5 class="italic">
+                            <x-result>
+                                <x-slot  name="title">Até R$1.320,00 </x-slot>
+                                <x-slot name="rightSide">7,50%</x-slot>
+                            </x-result>
+                            <x-result>
+                                <x-slot  name="title">De R$1.320,01 até R$2.571,29 </x-slot>
+                                <x-slot name="rightSide">9,00%</x-slot>
+                            </x-result>
+                            <x-result>
+                                <x-slot  name="title">De R$2.571,30 até R$3.856,94  </x-slot>
+                                <x-slot name="rightSide">12,00%</x-slot>
+                            </x-result>
+                            <x-result>
+                                <x-slot  name="title">De R$3.856,95 até R$ 7.507,49   </x-slot>
+                                <x-slot name="rightSide">14,00%</x-slot>
+                            </x-result>
+                            <x-result>
+                                <x-slot  name="title">Acima de R$ 7.507,49   </x-slot>
+                                <x-slot name="rightSide">TETO = R$ 876,97</x-slot>
+                            </x-result>
+                        </div>
                 </div>
             </div>
         </div>

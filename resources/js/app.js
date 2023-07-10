@@ -1,11 +1,13 @@
 const image = document.querySelector('.menuBar');
 const menu = document.querySelector('.menu');
+const nav = document.querySelector('nav ul');
 
 const spanOpen = document.querySelectorAll('.open');
 const spanClose = document.querySelectorAll('.closeModal');
 const modal = document.querySelectorAll('dialog');
 
 const calc = document.querySelector('.calc')
+const dontshow = document.querySelector('.dontshow')
 const details = document.querySelector('.detalhes')
 
 
@@ -16,7 +18,7 @@ modal.forEach( (item,key) => {
     spanClose[key].addEventListener('click', () => item.close());
 });
 
-// campos relacionados as caixas de texto
+// campos relacionados ao menubar de texto
 image.addEventListener('click', () => {
     menubar = menu.classList.toggle('hide');
     if (menubar){
@@ -25,18 +27,26 @@ image.addEventListener('click', () => {
     }else {
         menu.setAttribute('style','display:none');
         menu.classList.remove('hide');
+        window.addEventListener("resize" , () => {
+            menu.classList.add('hide');
+            menu.setAttribute('style','display:flex');
+        })
     }
 })
 // mostrando a memória de cálculo 
+
 calc.addEventListener('click', () => {
-    calc = details.classList.toggle('hide');
-    if (calc){
         details.setAttribute('style','display:flex');
         details.classList.add('hide');
-    }else {
+        dontshow.classList.remove('hide');
+        calc.classList.add('hide');
+})
+
+dontshow.addEventListener('click', () => {
         details.setAttribute('style','display:none');
         details.classList.remove('hide');
-    }
+        dontshow.classList.add('hide');
+        calc.classList.remove('hide');
 })
 
 

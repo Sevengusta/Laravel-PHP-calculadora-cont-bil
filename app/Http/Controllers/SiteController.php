@@ -122,6 +122,7 @@ class SiteController extends Controller
         $startFGTS = floatval($request->input('startFGTS'));
         $inicialDate = $request->input('inicialDate');
         $endDate = $request->input('endDate');
+        $interest = $request->input('interest');
         //convertendo tempo de meses em valores interios
         $inicial = Carbon::parse($inicialDate);
         $end = Carbon::parse($endDate);
@@ -132,14 +133,14 @@ class SiteController extends Controller
             $monthlyInterest = pow(1 + ($annualInterest / 100),  1 / 12) - 1;
             $mountDeposit = 0;
             $mountFGTS = 0;
-            for ($i = 0; $i < $monthsDifference; $i++) {
+            for ($i = 1; $i <= $monthsDifference; $i++) {
                 $mountDeposit +=  $deposit * pow($monthlyInterest + 1, $i);
             }
             $mountFGTS = $startFGTS * pow($monthlyInterest + 1, $monthsDifference);
             $mountTotal = $mountDeposit + $mountFGTS;
         } else {
             $mountDeposit = $deposit * $monthsDifference;
-            $mountFGTS = $startFGTS * $monthsDifference;
+            $mountFGTS = $startFGTS;
             $mountTotal = $mountDeposit + $mountFGTS;
         }
 
@@ -147,9 +148,13 @@ class SiteController extends Controller
 
 
         $FGTS = [
+            'salary' => 'R$ ' . number_format($salary, 2, ',', '.'),
+            'mountSalary' => 'R$ ' . number_format($deposit * $monthsDifference, 2, ',', '.'),
+            'interest' => $interest,
             'deposit' => 'R$ ' . number_format($deposit, 2, ',', '.'),
             'startFGTS' => 'R$ ' . number_format($startFGTS, 2, ',', '.'),
             'mountDeposit' => 'R$ ' . number_format($mountDeposit, 2, ',', '.'),
+            'monthlyInterest' => $monthlyInterest ?? null,
             'months' => $monthsDifference,
             'checkbox' => $request->input('interest'),
             'mountFGTS' =>  'R$ ' . number_format($mountFGTS, 2, ',', '.'),
@@ -167,9 +172,12 @@ class SiteController extends Controller
         $overtime = floatval($request->input('overtime')) ?? null;
         $grossSalary = ($salary + $overtime) * $days;
         $thirdVacation = $grossSalary / 3;
+        $allowanceChoice = $request->input('salaryAllowance');
         $allowance = $salary + $overtime;
+        
         $salaryAllowance = (floatval($request->input('salaryAllowance')) / 3) * $allowance;
         $thirdAllowance = $salaryAllowance / 3;
+        $advanceChoice = $request->input('advance');
         $advance = floatval($request->input('advance')) / 2 * $salary;
         $dependents = intval($request->input('dependents')) * 189.59;
         $earnings = $grossSalary + $thirdVacation + $salaryAllowance + $thirdAllowance + $advance;
@@ -179,7 +187,7 @@ class SiteController extends Controller
                         ($bcDiscounts <= 2571.29 ? $bcDiscounts * 0.090 - 19.80 :
                         ($bcDiscounts <= 3856.94 ? $bcDiscounts * 0.120 - 96.67 :
                         ($bcDiscounts <= 7507.49 ? $bcDiscounts * 0.140 - 174.08 : 876.97)));
-
+        $inssAliquot = $inssDiscounts/ $bcDiscounts;
 
         $bcIRRF = $bcDiscounts - $dependents - $inssDiscounts;
         // //Cálculo do IRRF
@@ -188,20 +196,29 @@ class SiteController extends Controller
                         ($bcIRRF <= 3751.05 ? $bcIRRF * 0.150 - 370.40 :
                         ($bcIRRF <= 4664.68 ? $bcIRRF * 0.225 - 651.73 :
                         ($bcIRRF >  4664.68 ? $bcIRRF * 0.275 - 884.96 : null))));
+        $irrfAliquot =  $irrfDiscounts / $bcIRRF;
         $totalDiscounts = $irrfDiscounts + $inssDiscounts;
         $netEarnings = $earnings - $totalDiscounts;
 
         $vacations = [
-            'salary' => 'R$ ' . number_format($grossSalary, 2, ',', '.'),
+            'grossSalary' => 'R$ ' . number_format($grossSalary, 2, ',', '.'),
             'thirdVacation' => 'R$ ' . number_format($thirdVacation, 2, ',', '.'),
+            'allowanceChoice' => $allowanceChoice,
             'salaryAllowance' => 'R$ ' . number_format($salaryAllowance, 2, ',', '.'),
             'thirdAllowance' => 'R$ ' . number_format($thirdAllowance, 2, ',', '.'),
             'advance' =>  'R$ ' . number_format($advance, 2, ',', '.'),
+            'advanceChoice' => $advanceChoice,
             'inssDiscounts' => 'R$ ' . number_format($inssDiscounts, 2, ',', '.'),
             'irrfDiscounts' => 'R$ ' . number_format($irrfDiscounts, 2, ',', '.'),
             'earnings' => 'R$ ' . number_format($earnings, 2, ',', '.'),
             'totalDiscounts' => 'R$ ' . number_format($totalDiscounts, 2, ',', '.'),
             'netEarnings' => 'R$ ' . number_format($netEarnings, 2, ',', '.'),
+            'days' => $days * 30,
+            'salary' => 'R$ ' . number_format($salary, 2, ',', '.'),
+            'overtime' => 'R$ ' . number_format($overtime, 2, ',', '.'),
+            'bcIRRF' => 'R$ ' . number_format($bcIRRF, 2, ',', '.'),
+            'inssAliquot' => number_format($inssAliquot * 100, 2, ',', '.')."%",
+            'irrfAliquot' => number_format($irrfAliquot * 100, 2, ',', '.')."%",
         ];
 
         return view('resultado_ferias', $vacations);
@@ -285,8 +302,12 @@ class SiteController extends Controller
         $expiredSalary = $expiredVacation === 'on' ? $salary :  0;
 
         //calculando as férias proporcionais no ano da demissão
-        $remainder = $daysOnMonth >= 15 ? ($monthsDifference + 1) % 12 : ($monthsDifference ) % 12 ;
-        $monthsWorked = $remainder == 0 ? 12 : $remainder;
+        if ($daysOnMonth >= 15) {
+            $monthsWorked = $monthsDifference != 0 ? $monthsDifference + 1 % 12 : 
+                            ($monthsDifference + 1 == 12 ? 12 :null); 
+        }else {
+            $monthsWorked = $monthsDifference != 0 ? ($monthsDifference % 12 ) : null;
+        }
         $vacation= $monthsWorked * $salary / 12;
         $thirdVacation= ($vacation + $expiredSalary) / 3;
         //13º proporcional referente ao ano de demissão
@@ -321,10 +342,10 @@ class SiteController extends Controller
                         ($salaryMonth <= 3856.94 ? $salaryMonth * 0.120 - 96.67 :
                         ($salaryMonth <= 7507.49 ? $salaryMonth * 0.140 - 174.08 : 876.97)));
         // cálculo do disconto do INSS
-        $inssVacationDiscounts = $vacation <= 1320.00 ? $vacation * 0.075 :
-                                ($vacation <= 2571.29 ? $vacation * 0.090 - 19.80 :
-                                ($vacation <= 3856.94 ? $vacation * 0.120 - 96.67 :
-                                ($vacation <= 7507.49 ? $vacation * 0.140 - 174.08 : 876.97)));
+        $inssVacationDiscounts = $thirteenth <= 1320.00 ? $thirteenth * 0.075 :
+                                ($thirteenth <= 2571.29 ? $thirteenth * 0.090 - 19.80 :
+                                ($thirteenth <= 3856.94 ? $thirteenth * 0.120 - 96.67 :
+                                ($thirteenth <= 7507.49 ? $thirteenth * 0.140 - 174.08 : 876.97)));
 
         // //Cálculo do IRRF
         $bcIRRF = $salaryMonth - $dependents - $inssDiscounts;
@@ -335,7 +356,7 @@ class SiteController extends Controller
                         ($bcIRRF >  4664.68 ? $bcIRRF * 0.275 - 884.96 : null))));
         //cálculo das alíquotas efetivas
         $inssEffetiveAliquot = $inssDiscounts/$salaryMonth * 100;
-        $inssVacationEffetiveAliquot = $inssVacationDiscounts/$vacation * 100;
+        $inssVacationEffetiveAliquot = $vacation != 0 ? $inssVacationDiscounts/$vacation * 100 : 0 ;
         $irrfEffetiveAliquot = $irrfDiscounts/$salaryMonth * 100;
         //soma das deduções
         $sumDeductions = - $irrfDiscounts - $inssDiscounts -$inssVacationDiscounts;
@@ -346,7 +367,7 @@ class SiteController extends Controller
         //saldo do salário no mês da rescisão do contrato
         $fgtsSalaryMonth = $salaryMonth * 0.08 ;
         //fgts proporcional ao ano de encerramento do contrato
-        $thirteenthFGTS = $fgtsSalaryMonth * $workOnYear / 12;
+        $thirteenthFGTS = $salary * 0.08 * $workOnYear / 12;
         // n tem FGTS: 2, 3, 5 , 6 , 7 E 8
         // n tem FGTS: 2, 3, 5 , 6 , 7 E 8
         // do aviso prévio
@@ -354,16 +375,16 @@ class SiteController extends Controller
             switch ($reason) {
                 case $reason === '1':
                     $percentage = 0.4;
-                    $fine = ($fgtsSalaryMonth + $fgtsDeposit + $thirteenth) * $percentage;
+                    $fine = ($fgtsSalaryMonth + $fgtsDeposit + $thirteenthFGTS) * $percentage;
                     break;
                 
                 case $reason === '4':
                     if ($advance === '2'){
                         $percentage = 0.2;
-                        $fine = ($fgtsSalaryMonth + $fgtsDeposit + $thirteenth) * $percentage;
+                        $fine = ($fgtsSalaryMonth + $fgtsDeposit + $thirteenthFGTS) * $percentage;
                     }else {
                         $percentage = 0.4;
-                        $fine = ($fgtsSalaryMonth + $fgtsDeposit + $thirteenth) * $percentage;
+                        $fine = ($fgtsSalaryMonth + $fgtsDeposit + $thirteenthFGTS) * $percentage;
                     }
                     break;
                 
@@ -374,21 +395,7 @@ class SiteController extends Controller
             }
         //soma do FGTS devido
 
-        $sumFGTS = $reason === "1"  || $reason === "4" ? $fine + $fgtsSalaryMonth + $fgtsDeposit + $thirteenth: 0;
-
-        //     // switch ($advance) {
-        //     //     case $advance === '2':
-        //             $percentage = 0.2;
-        //             $fine = ($fgtsSalaryMonth + $fgtsDeposit + $thirteenth) * $percentage
-
-        //     //         break;
-                    
-        //     //     default:
-        //     //         $daysOfAdvance =  15;
-        //     //         $advanceAid = ($daysOfAdvance * $salary) / 30;
-        //     //         break;
-        //     // }
-        // }
+        $sumFGTS = $reason === "1"  || $reason === "4" ? $fine + $fgtsSalaryMonth + $fgtsDeposit + $thirteenthFGTS: 0;
 
         //somatório total
         $sumSubs = $sum + $sumFGTS + $sumDeductions;

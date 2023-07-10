@@ -6,7 +6,7 @@
         </x-sideBar>
         <div class="template">
             <h1>Cálculo do seguro desemprego</h1>
-            <h3>O Seguro-Desemprego é um dos benefícios da Seguridade Social e tem a finalidade de garantir assistência financeira temporária ao trabalhador dispensado involuntariamente (sem justa causa)</h3>
+            <h3>O valor do seguro-desemprego mensal pago a cada trabalhador vai depender de qual é o salário médio recebido nos últimos 3 meses pelo assegurado no trabalho anterior.</h3>
             <div class="calculo">
                 <form method="GET" class="validator" name="calculo" action="resultado_seguro" >
                     <h4>Preencha os campos abaixo e clique em calcular</h4>

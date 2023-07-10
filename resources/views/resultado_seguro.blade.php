@@ -53,6 +53,31 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div class="flex justify-center items-center" >
+                        <h1 class="m-0" >Detalhes do cálculo </h1>
+                        <div class="w-[40px]">
+                            <img class="calc w-4/5 mx-3" src="{{ Vite::asset('Resources/images/check.png') }}" alt="">
+                            <img class="dontshow w-4/5 mx-3 hide" src="{{ Vite::asset('Resources/images/crossed.png') }}" alt="">
+                        </div>
+                    </div>
+                    <div class="detalhes hide flex-col">
+                        <div class="sum">
+                            <h5 class="font-bold">Média salarial menor que um salário mínimo </h5>
+                            <h5 class="italic font-sans"> o valor das parcelas serão de R$ 1.320,00 (um salário mínimo)</h5 class="italic"> <hr>
+                        </div>
+                        <div class="sum">
+                            <h5 class="font-bold">Média salarial até R$ 1.683,74 </h5>
+                            <h5 class="italic font-sans">Multiplica-se salário médio por 0.8 (80%)</h5 class="italic"> <hr>
+                        </div>
+                        <div class="sum">
+                            <h5 class="font-bold">Média salarial de R$ 1.683,74 até R$ 2.806,53 </h5>
+                            <h5 class="italic font-sans">O que exceder a R$ 1.683,74 multiplicar por 0,5 (50%) e somar a R$ 1.347,00</h5> <hr>
+                        </div>
+                        <div class="sum">
+                            <h5 class="font-bold">Média salarial acima de R$ 2.806,53 </h5>
+                            <h5 class="italic font-sans">O valor da parcela será de R$ 1.909,34</h5> <hr>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

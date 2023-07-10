@@ -3,8 +3,7 @@
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [SiteController::class, 'index']);
-Route::get('/seguro', [SiteController::class, 'seguro']);
+Route::get('/', [SiteController::class, 'seguro']);
 Route::get('/ferias', [SiteController::class, 'ferias']);
 Route::get('/FGTS', [SiteController::class, 'FGTS']);
 Route::get('/rescisao', [SiteController::class, 'rescisao']);

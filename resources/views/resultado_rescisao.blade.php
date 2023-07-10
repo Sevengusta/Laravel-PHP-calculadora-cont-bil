@@ -38,9 +38,10 @@
                         <h1 class="m-0" >Detalhes do cálculo </h1>
                         <div class="w-[40px]">
                             <img class="calc w-4/5 mx-3" src="{{ Vite::asset('Resources/images/check.png') }}" alt="">
+                            <img class="dontshow w-4/5 mx-3 hide" src="{{ Vite::asset('Resources/images/crossed.png') }}" alt="">
                         </div>
                     </div>
-                    <div class="detalhes hide">
+                    <div class="detalhes hide flex-col">
                         <div class="sum">
                             <h5 class="font-bold">verbas rescisórias</h5>
                             <h5 class="italic">As verbas rescisórias são valores que o trabalhador tem direito a receber quando seu contrato de trabalho chega ao fim.</h5 class="italic">
@@ -90,7 +91,7 @@
                             </x-result>
                             <x-result>
                                 <x-slot name="title">INSS 13º</x-slot>
-                                <p class="text-xs" >{{$vacation}} x {{$inssVacationEffetiveAliquot}}</p>
+                                <p class="text-xs" >{{$thirteenth}} x {{$inssVacationEffetiveAliquot}}</p>
                                 <x-slot name="rightSide">{{$inssVacationDiscounts}}</x-slot>
                             </x-result>
                             <x-result>
