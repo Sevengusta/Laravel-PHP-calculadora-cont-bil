@@ -7,5 +7,24 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Sobre a calculadora
+## Como iniciar o projeto:
+1 - Faça download do repositório
+2 - Dentro da pasta do arquivo baixado, Abra o VSCode e o terminal.
+3 - Dentro do terminal, digite os seguintes comandos: 
+4 - npm run dev 
+5 - php artisan serve
+Após ter seguido esses passos, o projeto estará funcionando. Abra o seu navegador no caminho: http://127.0.0.1:8000/ e faça bom proveito do projeto
+
+## Objetivo do projeto
+Desenvolver calculadoras que facilitem a vida 
+
+## Funcionalidades disponíveis:
+<li>Calculadora de INSS</li>
+<li>Calculadora de IRPF</li>
+<li>Calculadora de Seguro desemprego</li>
+<li>Calculadora de Rescisão trabalhista</li>
+<li>Calculadora de Férias</li>
+<li>Calculadora de FGTS</li>
+
+
 
