@@ -8,11 +8,13 @@
 </p>
 
 ## Como iniciar o projeto:
-1 - Faça download do repositório
-2 - Dentro da pasta do arquivo baixado, Abra o VSCode e o terminal.
-3 - Dentro do terminal, digite os seguintes comandos: 
-4 - npm run dev 
-5 - php artisan serve
+<ol>Faça download do repositório</ol>
+<ol>Dentro da pasta do arquivo baixado, Abra o VSCode e o terminal.</ol>
+<ol>
+    Dentro do terminal, digite os seguintes comandos:
+    <li>npm run dev </li>
+    <li>php artisan serve</li>
+</ol>
 Após ter seguido esses passos, o projeto estará funcionando. Abra o seu navegador no caminho: http://127.0.0.1:8000/ e faça bom proveito do projeto
 
 ## Objetivo do projeto
