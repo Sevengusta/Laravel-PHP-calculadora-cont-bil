@@ -15,10 +15,11 @@
     <li>npm run dev </li>
     <li>php artisan serve</li>
 </li>
+</hr>
 Após ter seguido esses passos, o projeto estará funcionando. Abra o seu navegador no caminho: http://127.0.0.1:8000/ e faça bom proveito do projeto
 
 ## Objetivo do projeto
-Desenvolver calculadoras que facilitem a vida 
+Projeto com o objetivo de aprendizado pessoal. Foram desenvolvidas diversas calculadoras, utilizando o conceito de MVC proporcionada pelo Laravel e controllers
 
 ## Funcionalidades disponíveis:
 <li>Calculadora de INSS</li>
