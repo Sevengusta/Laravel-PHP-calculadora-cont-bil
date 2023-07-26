@@ -24,7 +24,7 @@
 
                     <x-inputNumber>
                         <x-slot name="label">discounts</x-slot>
-                        <x-slot name="title">Discontos sobre a folha</x-slot>
+                        <x-slot name="title">Descontos sobre a folha</x-slot>
                         <x-slot name="body">
                             Digite todos os descontos relativos a folha. <br>
                             São exemplos de descontos: <br> 

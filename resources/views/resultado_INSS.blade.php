@@ -6,7 +6,7 @@
         </x-sideBar>
         <div class="template">
             <h1>Cálculo do desconto do INSS</h1>
-            <div class="flex flex-col 2xl:flex-row">
+            <div class="flex flex-col ">
                 <div id="resumo">
                     <h1>Resultado do seu cálculo</h1>
                     <div class="resumoBody">

@@ -2,7 +2,7 @@
 @section('content')
     <section class="container auto">
         <x-sideBar>
-            <x-slot name="IRRF"> active</x-slot>
+            <x-slot name="seguro"> active</x-slot>
         </x-sideBar>
         <div class="template">
             <h1>Quanto vou receber?</h1>

@@ -11,7 +11,7 @@ class SiteController extends Controller
 {
     public function index()
     {
-        return view('welcome');
+        return view('rescisão');
     }
     public function resultadoIRRF(Request $request)
     {
@@ -71,7 +71,7 @@ class SiteController extends Controller
             'inssBaseAliquot' => ($salary <= 7507.59 ? number_format($inssBaseAliquot, 1, ',', '.') . "%" : 'TETO'),
             'inssEffectiveAliquot' => number_format($inssEffectiveAliquot, 1, ',', '.') . "%",
             'irrfDiscounts' => "R$ " . number_format($irrfDiscounts, 2, ',', '.'),
-            'irrfBaseAliquot' => ($salary <= 2112.00 ? 'ISENTO' : number_format($irrfBaseAliquot, 1, ',', '.') . "%"),
+            'irrfBaseAliquot' => ($bcIRRF <= 2112.00 ? 'ISENTO' : number_format($irrfBaseAliquot, 1, ',', '.') . "%"),
             'irrfEffectiveAliquot' => number_format($irrfEffectiveAliquot, 1, ',', '.') . "%",
             'discountsValue' => "R$ " . number_format($discountsValue, 2, ',', '.'),
             'netSalary' => "R$ " . number_format($netSalary, 2, ',', '.'),
