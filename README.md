@@ -50,7 +50,7 @@ php artisan key:generate
 # para iniciar o projeto
 npm run dev
 
-# em seguida, abra outro terminal de commando e digite:
+# em seguida, abra outro terminal de comando e digite:
 php artishan serve
 
 ```
