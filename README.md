@@ -43,7 +43,7 @@ Procure a pasta arquivo .env no projeto (caso ele possua o nome de .env.example,
 
 
 ```bash
-# abra o terminal de comando de digite os seguintes códigos:
+# abra o terminal de comando do VSCode e digite os seguintes códigos:
 # Gerar Chave de Criptografia
 php artisan key:generate
 
@@ -56,7 +56,7 @@ php artishan serve
 ```
 
 </hr>
-Abra o seu navegador no caminho: http://127.0.0.1:8000/ . Caso tenha seguido o processo corretamente, você verá o projeto em execução:
+Abra o seu navegador no caminho: http://127.0.0.1:8000/. Caso tenha seguido o processo corretamente, você verá o projeto em execução:
 
 ![Exemplo do projeto](https://github.com/Sevengusta/Laravel-PHP-calculadora-contabil/assets/129140834/444a531e-6f54-4114-93c4-9bc2ad3a3a3e)
 
