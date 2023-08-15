@@ -43,12 +43,16 @@ Procure a pasta arquivo .env no projeto (caso ele possua o nome de .env.example,
 
 
 ```bash
+# abra o terminal de comando de digite os seguintes códigos:
 # Gerar Chave de Criptografia
 php artisan key:generate
 
 # para iniciar o projeto
+npm run dev
+
+# em seguida, abra outro terminal de commando e digite:
 php artishan serve
-npm run dev 
+
 ```
 
 </hr>
