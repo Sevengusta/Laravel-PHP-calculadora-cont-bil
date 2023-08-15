@@ -7,19 +7,55 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Como iniciar o projeto:
-<li>Faça download do repositório</li>
-<li>Dentro da pasta do arquivo baixado, Abra o VSCode e o terminal.</li>
-<li>
-    Dentro do terminal, digite os seguintes comandos:
-    <li>npm run dev </li>
-    <li>php artisan serve</li>
-</li>
-</hr>
-Após ter seguido esses passos, o projeto estará funcionando. Abra o seu navegador no caminho: http://127.0.0.1:8000/ e faça bom proveito do projeto
+Essa aplicação foi desenvolvido durante o video [Construindo aplicação Fullstack do ZERO](https://www.linkedin.com/feed/update/urn:li:activity:7084325121124933632/) utilizando **Laravel**. 
 
-## Objetivo do projeto
-Projeto com o objetivo de aprendizado pessoal. Foram desenvolvidas diversas calculadoras, utilizando o conceito de MVC proporcionada pelo Laravel e controllers
+<h2 id="pre-requisites">💻 Requisitos</h2> 
+
+Certifique-se que você possuí o composer instalado globalmente em sua máquina. </br> </br>
+
+Caso não possua, faça o download nesse link: https://getcomposer.org/download/
+
+
+<h2 id="how-to-use"> 🚀 Instalando o projeto (comandos dentro do git)</h2>
+
+Primeiro você deve clonar o repositório,
+
+```bash
+# Clone o repositório
+$ git clone https://github.com/Sevengusta/Laravel-PHP-calculadora-contabil
+
+# Acesse a pasta do projeto 
+$ cd Laravel-PHP-calculadora-contabil/
+
+# instalação de dependências necessárias (comandos de build)
+composer install
+npm install
+
+# Entre no VSCode
+$ code .
+```
+
+<h2 id="how-to-use"> 🚀 configurando o ambiente do projeto (comandos dentro do VSCode)</h2>
+
+Procure a pasta arquivo .env no projeto (caso ele possua o nome de .env.example, renomear para .env)
+
+![Tutorial Laravel](https://github.com/Sevengusta/Laravel-PHP-calculadora-contabil/assets/129140834/9204461b-bcf0-4dfb-b3ee-bf7452c84c9b)
+
+
+```bash
+# Gerar Chave de Criptografia
+php artisan key:generate
+
+# para iniciar o projeto
+php artishan serve
+npm run dev 
+```
+
+</hr>
+Abra o seu navegador no caminho: http://127.0.0.1:8000/ . Caso tenha seguido o processo corretamente, você verá o projeto em execução:
+
+![Exemplo do projeto](https://github.com/Sevengusta/Laravel-PHP-calculadora-contabil/assets/129140834/444a531e-6f54-4114-93c4-9bc2ad3a3a3e)
+
 
 ## Funcionalidades disponíveis:
 <li>Calculadora de INSS</li>
