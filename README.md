@@ -70,16 +70,22 @@ Abra o seu navegador no caminho: http://127.0.0.1:8000/ . Caso tenha seguido o p
 
 ![image](https://github.com/Sevengusta/Laravel-PHP-calculadora-contabil/assets/129140834/528dd958-74e8-4ffa-9599-c97b54c6b766)
 
-<li>Calculadora de Seguro desemprego: retorn o valor das parcelas de seguro desemprego devidas, caso você possua o direito ao benefício.</li>
+<li>Calculadora de Seguro desemprego: retorna o valor das parcelas de seguro desemprego devidas, caso você possua o direito ao benefício.</li>
 
 ![image](https://github.com/Sevengusta/Laravel-PHP-calculadora-contabil/assets/129140834/e88401d7-a078-4abe-93c3-cb8734d2a6d3)
 
-<li>Calculadora de FGTS : além de realizar o cálculo do FGTS devido, ela retorna a quantia que poderá ser retirada pelo empregado, caso possua direito </li>
+<li>Calculadora de FGTS : retorna o saldo inicial de FGTS, corrigido com juros, e o valor de contribuição adicionado no último emprego </li>
 
-![image](https://github.com/Sevengusta/Laravel-PHP-calculadora-contabil/assets/129140834/8f42ec8b-147b-4b5c-bf68-4c4bd9d6bf46)
+![image](https://github.com/Sevengusta/Laravel-PHP-calculadora-contabil/assets/129140834/92d28a53-8a5a-44cc-901f-0c17c7bfa92e)
 
 <li>Calculadora de Férias: retorna a quantidade devida pelo funcionário, ao começar gozar de suas férias </li>
-<li>Calculadora de Rescisão trabalhista</li>
+
+![image](https://github.com/Sevengusta/Laravel-PHP-calculadora-contabil/assets/129140834/8687c414-09c7-4f63-9bd2-9ba1d1334d3c)
+
+<li>Calculadora de Rescisão trabalhista retorna as verbas rescisórias com ou sem férias vencidas, calcula as deduções e o valor do FGTS devido pelo encerramento do contrato (caso tenha direito).</li>
+
+![image](https://github.com/Sevengusta/Laravel-PHP-calculadora-contabil/assets/129140834/ec641158-d8f7-4eaf-bbd8-f4b3e7e06eec)
+
 
 
 
