@@ -62,12 +62,24 @@ Abra o seu navegador no caminho: http://127.0.0.1:8000/ . Caso tenha seguido o p
 
 
 ## Funcionalidades disponíveis:
-<li>Calculadora de INSS</li>
-<li>Calculadora de IRPF</li>
-<li>Calculadora de Seguro desemprego</li>
+<li>Calculadora de INSS: retorna o percentual do salário bruto que será retido pela empresa para o INSS </li>
+
+![image](https://github.com/Sevengusta/Laravel-PHP-calculadora-contabil/assets/129140834/d80676c9-5936-4728-851e-7eb306aed9fd)
+
+<li>Calculadora de IRPF: retorna o percentual do salário bruto que será retido pela empresa para para o IRPF</li>
+
+![image](https://github.com/Sevengusta/Laravel-PHP-calculadora-contabil/assets/129140834/528dd958-74e8-4ffa-9599-c97b54c6b766)
+
+<li>Calculadora de Seguro desemprego: retorn o valor das parcelas de seguro desemprego devidas, caso você possua o direito ao benefício.</li>
+
+![image](https://github.com/Sevengusta/Laravel-PHP-calculadora-contabil/assets/129140834/e88401d7-a078-4abe-93c3-cb8734d2a6d3)
+
+<li>Calculadora de FGTS : além de realizar o cálculo do FGTS devido, ela retorna a quantia que poderá ser retirada pelo empregado, caso possua direito </li>
+
+![image](https://github.com/Sevengusta/Laravel-PHP-calculadora-contabil/assets/129140834/8f42ec8b-147b-4b5c-bf68-4c4bd9d6bf46)
+
+<li>Calculadora de Férias: retorna a quantidade devida pelo funcionário, ao começar gozar de suas férias </li>
 <li>Calculadora de Rescisão trabalhista</li>
-<li>Calculadora de Férias</li>
-<li>Calculadora de FGTS</li>
 
 
 
