@@ -51,7 +51,7 @@ php artisan key:generate
 npm run dev
 
 # em seguida, abra outro terminal de comando e digite:
-php artishan serve
+php artisan serve
 
 ```
 
